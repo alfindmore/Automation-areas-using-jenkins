@@ -3,18 +3,17 @@ pipeline {
 
   parameters{
         choice(
-            name: 'tipo_de_operacao',
+            name: 'operacao',
             choices: ['sub','mul','add','div'],
             ),
         string(
-            name: 'num1',
+            name: 'numero1',
             defaultValue: '0',
-            description: 'Num 1'
             ),
         string(
-            name: 'num2',
+            name: 'numero2',
             defaultValue: '0',
-            description: 'Num 2')
+            )
   }
 
   stages {
@@ -24,18 +23,17 @@ pipeline {
         bat pip install junit-xml
         bat python -m py_compile calculadora.py
         bat pyinstaller --onefile calculadora.py
-        bat 'move dist\\calculadora.exe calculadora.exe'
 
       }
     }
     stage('Stage 2: Executar calculadora') {
       steps {
-          bat calculadora.exe ' + params.num1 + ' ' + params.num2 + ' ' + params.tipo_de_operacao + '> out.txt'
+          bat "calculadora.exe ${params.numero1} ${params.numero2} ${params.operacao}> out.txt""
       }
     }
     stage('Stage 3: Preparar release') {
       steps {
-          bat 'python -m zipfile -c delivery.zip out.txt'
+          bat 'python -m zipfile -c outcalculadora.zip out.txt'
       }
     }
   }
@@ -43,7 +41,7 @@ pipeline {
 
     post {
         always{
-            archiveArtifacts artifacts: 'delivery.zip',
+            archiveArtifacts artifacts: 'outcalculadora.zip',
             onlyIfSuccessful: true
         }
 

@@ -4,15 +4,15 @@ pipeline {
   parameters{
         choice(
             name: 'operacao',
-            choices: ['sub','mul','add','div'],
+            choices: ['sub','mul','add','div']
             ),
         string(
             name: 'numero1',
-            defaultValue: '0',
+            defaultValue: '0'
             ),
         string(
             name: 'numero2',
-            defaultValue: '0',
+            defaultValue: '0'
             )
   }
 

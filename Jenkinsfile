@@ -28,7 +28,7 @@ pipeline {
     }
     stage('Stage 2: Executar calculadora') {
       steps {
-          bat "calculadora.exe ${params.numero1} ${params.numero2} ${params.operacao}> out.txt""
+          bat 'calculadora.exe ${params.numero1} ${params.numero2} ${params.operacao}> out.txt'
       }
     }
     stage('Stage 3: Preparar release') {

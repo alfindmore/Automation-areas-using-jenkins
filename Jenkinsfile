@@ -5,11 +5,11 @@ pipeline {
         choice(
             name: 'operacao',
             choices: ['sub','mul','add','div']
-            ),
+            )
         string(
             name: 'numero1',
             defaultValue: '0'
-            ),
+            )
         string(
             name: 'numero2',
             defaultValue: '0'

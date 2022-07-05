@@ -25,7 +25,7 @@ def main():
         exit(1)
     
     print("Erro op")
-    exit(0)
+    exit(1)
 
 if __name__ == "__main__":
     main()
